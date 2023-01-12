@@ -127,27 +127,35 @@ function Game() {
 
     function handleSubmit(event) {
 
-        event.preventDefault();
-        let firstWordL
-        const answerL = lowerCase(answer);
-        if (result.firstWord) {
-            firstWordL = lowerCase(result.firstWord);
-        }
-        const secondWordL = lowerCase(result.breed);
 
-        if (result.firstWord) {
-            if (answerL === firstWordL + ' ' + secondWordL) {
-                setVerdict("That's right!")
-            } else {
-                setVerdict("No, try again...")
-            }
+        event.preventDefault();
+
+        if (answer === "") {
+            setVerdict("Please enter a guess")
         } else {
-            if (answerL === secondWordL) {
-                setVerdict("That's right!")
+
+            let firstWordL
+            const answerL = lowerCase(answer);
+            if (result.firstWord) {
+                firstWordL = lowerCase(result.firstWord);
+            }
+            const secondWordL = lowerCase(result.breed);
+
+            if (result.firstWord) {
+                if (answerL === firstWordL + ' ' + secondWordL) {
+                    setVerdict("That's right!")
+                } else {
+                    setVerdict("No, try again...")
+                }
             } else {
-                setVerdict("No, try again...")
+                if (answerL === secondWordL) {
+                    setVerdict("That's right!")
+                } else {
+                    setVerdict("No, try again...")
+                }
             }
         }
+
     }
 
     function revealAnswer() {
