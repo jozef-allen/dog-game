@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap');
+
+html {}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Sofia Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  background: linear-gradient(45deg, rgb(0, 143, 104), rgb(250, 224, 66)) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+}
+
+div.container {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  overflow: hidden;
+  border: 10px solid;
+  border-image: linear-gradient(45deg, rgb(250, 224, 66), rgb(0, 143, 104)) 1;
+  background-color: white;
+  margin: 0 auto;
+  display: block;
+}
+
+img.dog {
+  position: absolute;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button {
+  font-family: inherit;
+  font-size: 1em;
+  margin-right: .5em;
+}
+
+.button1 {
+  margin-top: 1em;
+}
+
+.button3 {
+  margin-left: .5em;
+}
+
+.button2 {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+div.buttons {
+  text-align: center;
+}
+
+input {
+  margin-top: 1em;
+  font-size: 1em;
+}
+
+p.verdict {
+  font-size: 1.5em;
+  padding-top: 20px;
+  height: 50px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+footer {
+  padding-top: .5em;
+  padding-bottom: 2.5em;
+  text-align: center;
+  font-size: .85em;
+}
