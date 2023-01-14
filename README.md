@@ -9,7 +9,7 @@ To create a fun game to put in my portfolio and show/improve my skills in React,
 
 [Dog Breed Guessing Game](https://dog.ptesquad.com/) 
 
-## Technologies Used
+## Technologies used
 
 - React (18.2.0)
 - JavaScript
@@ -128,7 +128,7 @@ height: 380px;
 overflow: hidden;
 ```
 
-## Wins & Challenges
+## Wins & challenges
 
 ### Wins
 
