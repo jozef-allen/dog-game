@@ -39,6 +39,7 @@ function Game() {
                 }
             }
         }
+
     }
 
     function spaceCheck(value) {
@@ -178,15 +179,25 @@ function Game() {
 
                 <form>
 
-                    {greyedToggle ? <input disabled="disabled" className="greyed-out" type="text"></input>
-                        : <input className="standard"
+                    {greyedToggle ?
+                        <input disabled="disabled"
+                            className="greyed-out"
+                            type="text">
+                        </input> :
+                        <input className="standard"
                             type="text"
                             value={answer}
                             placeholder="Answer"
                             onChange={handleChange}>
                         </input>}
 
-                    {showAnswer ? <p className="verdict">{(result.firstWord) && result.firstWord} {result.breed}</p> : <p className="verdict">{verdict}</p>}
+                    {showAnswer ?
+                        <p className="verdict">
+                            {(result.firstWord) && result.firstWord} {result.breed}
+                        </p> :
+                        <p className="verdict">
+                            {verdict}
+                        </p>}
 
                     <button className="button2" onClick={handleSubmit}>Submit</button>
 
