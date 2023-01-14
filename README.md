@@ -53,24 +53,26 @@ This would be in-turn rendered in ```index.js``` with ```index.css``` styling th
 
 ### Game component
 
-First I created some state called ```dogData``` and wrote some code to fetch the breed list from Dog API within ```.useEffect```, setting ```dogData``` to what was returned.
+This app has various pieces of state. The first one listed is ```dogData```, and this holds the breed data that's fetched from the API. This ```fetch``` is called from within ```.useEffect```, with ```[]``` passed as the dependency so it only runs on initial render.
 
-My app counts the number of breeds using ```Object.keys```, then uses this length to iterate over the breed list, checking each breed for sub-breeds. If the breed has none, it gets pushed to my new array (```fullBreedList```) as is. If it has sub-breeds the sub-breed value is taken as the first string and concatenated to the main breed, which becomes the second string. The resulting string is pushed to ```fullBreedList```. 
+My app counts the number of breeds using ```Object.keys```, then uses this ```length``` to iterate over the breed list, checking each breed for sub-breeds. If the breed has none, it gets pushed to my new array (```fullBreedList```) as is. If it has sub-breeds, the sub-breed value is taken as the first string and concatenated to the main breed, which becomes the second string. The resulting string is pushed to ```fullBreedList```. 
 
-This concatenation creates names for breeds as we would speak them in conversation (e.g. 'English Bulldog'). However, there were one or two where the order was flipped (e.g. ```shepherd australian``` rather than 'Australian Shepherd'). This was simply down to the way the data was structured on Dog API and out of my control, but I wrote my code to make the flipped order the exception (2 out of 148).
+This concatenation creates names for breeds as we would speak them in conversation (e.g. 'English Bulldog'). However, there were one or two instances where the order was flipped (e.g. ```shepherd australian``` rather than 'Australian Shepherd'). This was simply down to the way the data was structured on Dog API and out of my control, but I wrote my code to make the flipped order the exception (2 out of 148).
 
 ### Main function
 
-I then started on my ```findRandomBreed``` function which contains the majority of the logic in my app and is triggered by a button click, essentially starting the game. 
+Next is my ```findRandomBreed``` function, which contains the majority of the logic in my app and is triggered by a button click, essentially starting the game. The first few lines of this function are resetting various pieces of state that get used later on. 
 
-The first few lines of this function are resetting various pieces of state that get used later on. Next it grabs a random breed from the list of 148, then checks if the breed contains one or two words. If it contains one word (e.g. ```beagle```), the function plugs it into the URL string which accesses the photos (e.g. ```https://dog.ceo/api/breed/beagle/images```). If it contains two words the function plugs in the two words in reverse order (e.g. ```https://dog.ceo/api/breed/bulldog/english/images```).
+Next it grabs a random breed from the list of 148, then checks if the breed contains one or two words. If it contains one word (e.g. ```beagle```), the function plugs it into the URL string which accesses the photos as is (e.g. ```https://dog.ceo/api/breed/beagle/images```). If it contains two words, the function plugs in the two words in reverse order (e.g. ```https://dog.ceo/api/breed/bulldog/english/images```).
 
-Using this URL and ```fetch```, the function takes the directory's data and selects a random photo from it. I created some more state called ```result```, and this is an object that holds the main data that makes the game possible. It has three keys:
+Using this URL and ```fetch```, ```findRandomBreed``` then takes the directory's image data and selects a random photo. I created some more state called ```result```, and this is an object that holds the main data that makes the game possible. It has three keys:
 - ```breed``` (the main breed string)
 - ```firstWord``` (the sub-breed string, if it exists)
 - ```image``` (the photo/JPEG's URL, and this is set to a default value that shows the same first dog photo when the page initially renders)
 
-So  ```findRandomBreed```'s last step is to set ```result```'s state, but just before it does it capitalises the first letter of the strings. There's a debate as to whether dog breed names are proper nouns; basically some are and some aren't but for consistency I decided to capitalise each word.
+So  ```findRandomBreed```'s last step is to set ```result```'s state, but just before it does it capitalises the first letter of the strings. 
+
+There's a debate as to whether dog breed names are proper nouns; basically some are and some aren't but for consistency I decided to capitalise each word.
 
 ### Time to guess
 
@@ -78,11 +80,15 @@ Using the ```result``` state, my game displays the random dog photo on the page.
 
 First, this function checks if a string has been entered. If not it prompts the user with 'Please enter a guess'. There is a ```div``` below the ```input``` that is empty on first render, but it's used to display this message and all others to the user.
 
-Next, this function makes the whole submitted answer lower case, then matches it against what's contained in ```result``` (which is also converted to lower case at this point). Depending on whether the answer is right or wrong, the user is presented with 'That's right!' or 'No, try again...'
+Next, this function makes the whole submitted answer lower case, then matches it against what's contained in ```result``` (which is also converted to lower case at this point). 
+
+Depending on whether the answer is right or wrong, the user is presented with 'That's right!' or 'No, try again...'
 
 ### Revealing the answer
 
-I also created a button for users to reveal the answer with if they can't guess correctly (to be honest, this game ended up being fairly difficult if you're not a dog lover). When the ```revealAnswer``` function is triggered, it alters a couple of pieces of boolean state that link up with the below instances of short circuit evaluation:
+I also created a button for users to reveal the answer with if they can't guess correctly. To be honest, this game ended up being fairly difficult if you're not a dog lover. 
+
+When the ```revealAnswer``` function is triggered, it alters a couple of pieces of boolean state that link up with the below instances of short circuit evaluation:
 
 ``` js
 {greyedToggle ?
