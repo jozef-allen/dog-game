@@ -65,7 +65,7 @@ I then started on my ```findRandomBreed``` function which contains the majority 
 
 The first few lines of this function are resetting various pieces of state that get used later on. Next it grabs a random breed from the list of 148, then checks if the breed contains one or two words. If it contains one word (e.g. ```beagle```), the function plugs it into the URL string which accesses the photos (e.g. ```https://dog.ceo/api/breed/beagle/images```). If it contains two words the function plugs in the two words in reverse order (e.g. ```https://dog.ceo/api/breed/bulldog/english/images```).
 
-Using this URL and ```fetch```, the function takes the directory's data and selects a random photo from it. At the top of the file there is some more state called ```result```, and this is an object that holds the main data that makes the game possible. It has three keys:
+Using this URL and ```fetch```, the function takes the directory's data and selects a random photo from it. I created some more state called ```result```, and this is an object that holds the main data that makes the game possible. It has three keys:
 - ```breed``` (the main breed string)
 - ```firstWord``` (the sub-breed string, if it exists)
 - ```image``` (the photo/JPEG's URL, and this is set to a default value that shows the same first dog photo when the page initially renders)
@@ -105,11 +105,11 @@ I also created a button for users to reveal the answer with if they can't guess 
 		{verdict}
 	</p>}
 ```
-This means that correct answer is pulled and displayed from the ```result``` state, and at the same time, no more user input is possible as the ```input``` becomes disabled/greyed out.
+When ```revealAnswer``` runs, the correct answer is pulled and displayed from the ```result``` state, and at the same time, the ```input``` becomes disabled/greyed out meaning no more user input is possible.
 
 ### Styling
 
-Once the functionality was all there I finished off the HTML for the header and footer components and styled the whole page to give it a bright/light-hearted feel. 
+Once the functionality was all there I finished off the HTML for the header and footer components, and styled the whole page to give it a bright/light-hearted feel. 
 
 As the dimensions of the dog photos vary massively, I used the below CSS to render them all within the same square ```div```:
 ``` css
@@ -126,7 +126,7 @@ overflow: hidden;
 
 ### Wins
 
-- I'm really glad I managed to come up with an original concept and work completely on my own to pull together what I've taught myself in React and JavaScript into something practical. I wanted to work on something that involved working with an API too -- it's nice to create something that will still function even as data is added to the API in the future. 
+- I'm really glad I managed to come up with an original concept and work completely on my own to pull together what I've taught myself in React and JavaScript into something practical. I wanted to work on a project that involved working with an API too -- it's nice to create something that will still function even as data is added to the API in the future. 
 - I learnt a lot about how ```fetch``` works in practice and how ```.then``` and promises are different to ```async```/```await```.
 - This was the first time I used Netlify to host a React app, and I linked it up with a custom URL on a domain I own -- it's now live for anyone to try.
 
