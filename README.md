@@ -1,4 +1,3 @@
-
 # Dog Breed Guessing Game
 
 ## Goal
